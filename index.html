@@ -21,7 +21,7 @@
         .btn-amarelo { width: 100%; padding: 18px; background: #ffbc0d; border: none; font-size: 16px; color: #292929; font-weight: bold; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 12px rgba(255, 188, 13, 0.2); }
         .btn-amarelo:hover { background: #f5b100; }
 
-        /* TELA 2: CATEGORIAS PRINCIPAIS (image_3c0a86.png) */
+        /* TELA 2: CATEGORIAS PRINCIPAIS */
         .titulo-secao { font-size: 24px; color: #292929; font-weight: bold; margin: 0 0 30px 0; }
         .grid-categorias { display: flex; justify-content: center; gap: 40px; margin: auto 0; }
         .card-categoria { display: flex; flex-direction: column; align-items: center; cursor: pointer; border: none; background: none; transition: transform 0.2s; width: 160px; }
@@ -29,14 +29,19 @@
         .card-categoria img { width: 100px; height: 100px; object-fit: contain; margin-bottom: 15px; }
         .card-categoria span { font-size: 16px; color: #292929; font-weight: bold; text-align: center; line-height: 1.3; }
 
-        /* TELA 3: GRID DE SANDUÍCHES (image_3c06e5.png) */
-        .grid-lanches { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 16px; overflow-y: auto; }
-        .card-lanche { background: #f8f8f8; border-radius: 12px; padding: 15px 10px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center; cursor: pointer; border: 1px solid transparent; transition: 0.2s; min-height: 160px; }
-        .card-lanche:hover { background: white; border-color: #ffbc0d; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
-        .card-lanche img { width: 80px; height: 80px; object-fit: contain; margin-bottom: 10px; }
-        .card-lanche span { font-size: 12px; color: #292929; font-weight: bold; line-height: 1.3; }
+        /* TELA 3: GRID DE SANDUÍCHES */
+        .grid-lanches { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; overflow-y: auto; }
+        .card-lanche { background: #f8f8f8; border-radius: 16px; padding: 20px 15px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center; border: 1px solid #eaeaea; min-height: 220px; }
+        .card-lanche img { width: 85px; height: 85px; object-fit: contain; margin-bottom: 10px; }
+        .card-lanche span { font-size: 14px; color: #292929; font-weight: bold; line-height: 1.3; margin-bottom: 12px; }
+        .lanche-botoes-flex { display: flex; gap: 8px; width: 100%; }
+        .btn-acao-lanche { flex: 1; padding: 8px; font-size: 12px; font-weight: bold; border-radius: 8px; border: none; cursor: pointer; transition: 0.2s; }
+        .btn-estudar { background: #e0e0e0; color: #4f4f4f; }
+        .btn-estudar:hover { background: #d0d0d0; color: #292929; }
+        .btn-treinar { background: #ffbc0d; color: #292929; }
+        .btn-treinar:hover { background: #f5b100; }
 
-        /* TELA 4: DETALHE / FICHA DA RECEITA (image_3bfee7.png) */
+        /* TELA 4: DETALHE / FICHA DA RECEITA */
         .receita-container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; margin-bottom: 30px; }
         .receita-esquerda { text-align: left; }
         .receita-esquerda h2 { font-size: 32px; color: #292929; margin: 0 0 20px 0; font-weight: bold; }
@@ -47,6 +52,49 @@
         .ingrediente-linha { display: flex; align-items: center; gap: 15px; padding: 8px 0; border-bottom: 1px solid #fafafa; }
         .ingrediente-linha img { width: 35px; height: 35px; object-fit: contain; }
         .ingrediente-linha span { font-size: 14px; color: #292929; font-weight: bold; }
+
+        /* TELA 4.5: QUIZ AS CEGAS (NOVA TELA!) */
+        .quiz-ingredientes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; max-height: 320px; overflow-y: auto; padding: 5px; border: 1px solid #eaeaea; border-radius: 12px; }
+        .card-ingrediente-quiz { display: flex; flex-direction: column; align-items: center; padding: 12px; background: #fff; border: 2px solid #eeeeee; border-radius: 12px; cursor: pointer; transition: 0.2s; text-align: center; }
+        .card-ingrediente-quiz:hover { background: #fafafa; border-color: #ccc; }
+        .card-ingrediente-quiz.selecionado { border-color: #ffbc0d; background: #fffdf2; box-shadow: 0 4px 10px rgba(255,188,13,0.15); }
+        .card-ingrediente-quiz img { width: 45px; height: 45px; object-fit: contain; margin-bottom: 8px; }
+        .card-ingrediente-quiz span { font-size: 12px; color: #292929; font-weight: bold; }
+
+        /* TELA 5: MESA DE PREPARAÇÃO (COZINHA) */
+        .cozinha-split { display: grid; grid-template-columns: 1.2fr 1fr; gap: 30px; flex: 1; min-height: 0; }
+        .cozinha-ingredientes-lista { display: flex; flex-direction: column; background: white; overflow-y: auto; max-height: 380px; border: 1px solid #e6e6e6; border-radius: 12px; }
+        button.ingrediente-row-cozinha { display: flex; align-items: center; width: 100%; padding: 12px 15px; background: white; border: none; border-bottom: 1px solid #f2f2f2; cursor: pointer; transition: background 0.2s; text-align: left; }
+        button.ingrediente-row-cozinha:hover { background: #f9f9f9; }
+        button.ingrediente-row-cozinha img { width: 45px; height: 45px; object-fit: contain; margin-right: 15px; }
+        button.ingrediente-row-cozinha span { font-size: 15px; color: #292929; font-weight: bold; }
+
+        .cozinha-painel-montagem { display: flex; flex-direction: column; gap: 15px; }
+        .caixas-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+        
+        .caixa-layout { border: 2px solid #e0e0e0; border-radius: 12px; background: white; padding: 10px; min-height: 180px; display: flex; flex-direction: column-reverse; gap: 6px; cursor: pointer; transition: 0.2s; position: relative; box-shadow: inset 0 2px 6px rgba(0,0,0,0.02); }
+        .caixa-layout.ativa { border-color: #ffbc0d; background: #fffdf7; box-shadow: 0 0 0 3px rgba(255, 188, 13, 0.2); }
+        
+        .caixa-tag { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #e0e0e0; color: #666; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 10px; text-transform: uppercase; pointer-events: none; }
+        .caixa-layout.ativa .caixa-tag { background: #ffbc0d; color: #292929; }
+
+        .item-na-caixa { display: flex; align-items: center; background: #292929; color: white; padding: 6px 10px; border-radius: 6px; font-size: 12px; font-weight: bold; animation: surgimento 0.15s ease-out; }
+        .item-na-caixa img { width: 22px; height: 22px; object-fit: contain; margin-right: 8px; background: white; border-radius: 3px; }
+
+        /* Botões de Comando Globais */
+        .cozinha-botoes-container { display: flex; border-top: 1px solid #f2f2f2; margin-top: auto; padding-top: 15px; gap: 10px; }
+        .btn-cozinha-cancelar { flex: 1; padding: 15px; background: #e0e0e0; border: none; font-size: 15px; color: #292929; font-weight: bold; border-radius: 10px; cursor: pointer; }
+        .btn-cozinha-confirmar { flex: 2; padding: 15px; background: #ffbc0d; border: none; font-size: 15px; color: #292929; font-weight: bold; border-radius: 10px; cursor: pointer; }
+
+        /* Painel de Resultados */
+        .resultado-card { margin-top: 15px; padding: 15px; border-radius: 12px; background: #f9f9f9; border: 1px solid #e6e6e6; }
+        .resultado-flex { display: flex; align-items: center; gap: 15px; }
+        .resultado-texto { flex: 1; text-align: left; }
+        .resultado-texto h3 { margin: 0 0 5px 0; font-size: 15px; color: #292929; }
+        .resultado-texto p { margin: 4px 0; font-size: 13px; color: #4f4f4f; }
+        .resultado-img-lanche { width: 80px; height: 80px; object-fit: contain; }
+
+        @keyframes surgimento { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     </style>
 </head>
 <body>
@@ -67,15 +115,15 @@
         <h2 class="titulo-secao">Escolha uma Linha de Sanduíches</h2>
         <div class="grid-categorias">
             <button class="card-categoria" onclick="carregarGridLanches('bovina')">
-                <img src="cat_bovina.png" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 24 24\'><text x=\'2\' y=\'18\' font-size=\'16\'>🍔</text></svg>'" alt="Carne Bovina">
+                <img src="" alt="Carne Bovina">
                 <span>Sanduíches de Carne Bovina</span>
             </button>
             <button class="card-categoria" onclick="carregarGridLanches('tasty')">
-                <img src="cat_tasty.png" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 24 24\'><text x=\'2\' y=\'18\' font-size=\'16\'>👑</text></svg>'" alt="Família Tasty">
+                <img src="" alt="Família Tasty">
                 <span>Família Tasty</span>
             </button>
             <button class="card-categoria" onclick="carregarGridLanches('frango')">
-                <img src="cat_frango.png" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'60\' height=\'60\' viewBox=\'0 0 24 24\'><text x=\'2\' y=\'18\' font-size=\'16\'>🍗</text></svg>'" alt="Frango">
+                <img src="" alt="Frango">
                 <span>Sanduíches de Frango</span>
             </button>
         </div>
@@ -89,7 +137,6 @@
 
     <div id="tela-receita" class="tela">
         <button class="btn-voltar" onclick="navegarPara('tela-grid-lanches')">◀ Voltar para a Lista</button>
-        
         <div class="receita-container">
             <div class="receita-esquerda">
                 <h2 id="receita-nome">Nome do Lanche</h2>
@@ -98,8 +145,60 @@
             </div>
             <div class="receita-direita" id="receita-lista-ingredientes"></div>
         </div>
+    </div>
 
-        <button class="btn-amarelo" style="max-width: 250px; margin: 0 auto;" onclick="irParaCozinha()">Ir para Esteira de Produção ➔</button>
+    <div id="tela-quiz" class="tela">
+        <button class="btn-voltar" onclick="navegarPara('tela-grid-lanches')">◀ Cancelar Treinamento</button>
+        <h2 class="titulo-secao" style="margin-bottom: 5px;">Módulo de Treinamento - Etapa 1</h2>
+        <h3 id="quiz-lanche-titulo" style="color: #ffbc0d; margin-top: 0; margin-bottom: 20px; font-size: 22px;">Lanche</h3>
+        <p style="font-size: 14px; color: #555; margin-bottom: 20px; text-align: left; line-height: 1.5;">
+            🔒 <strong>Desafio Mestre:</strong> Quais são os ingredientes que compõem este lanche? <br>
+            Selecione todos os itens corretos da despensa da loja abaixo para liberar a esteira de montagem:
+        </p>
+        
+        <div class="quiz-ingredientes-grid" id="quiz-container-ingredientes"></div>
+        
+        <div class="resultado-card" id="quiz-resultado-container" style="display: none; margin-top: 25px;">
+            <div class="resultado-texto" id="quiz-resultado-texto"></div>
+        </div>
+
+        <div class="cozinha-botoes-container" style="margin-top: 25px; padding: 0;">
+            <button class="btn-cozinha-cancelar" id="btn-quiz-reiniciar" onclick="reiniciarQuiz()" style="display: none;">Tentar Outra Vez</button>
+            <button class="btn-cozinha-confirmar" id="btn-quiz-verificar" onclick="verificarRespostasQuiz()">Verificar Ingredientes</button>
+            <button class="btn-cozinha-confirmar" id="btn-quiz-avancar" onclick="irParaCozinha()" style="display: none; background: #007a33; color: white;">Avançar para Montagem (Etapa 2) ➔</button>
+        </div>
+    </div>
+
+    <div id="tela-cozinha" class="tela">
+        <button class="btn-voltar" onclick="navegarPara('tela-grid-lanches')">◀ Sair da Cozinha</button>
+        <h2 class="titulo-secao" id="cozinha-lanche-titulo">Mesa de Preparação</h2>
+        
+        <div class="cozinha-split">
+            <div class="cozinha-ingredientes-lista" id="cozinha-lista-ingredientes"></div>
+            <div class="cozinha-painel-montagem">
+                <p style="font-size: 13px; color: #666; margin: 0; font-weight: bold; text-align: center;">TOQUE NA CAIXA QUE DESEJA RECHEAR:</p>
+                <div class="caixas-container">
+                    <div class="caixa-layout ativa" id="caixa-tampa" onclick="mudarCaixaAtiva('tampa')">
+                        <div class="caixa-tag">Tampa (Esquerda)</div>
+                    </div>
+                    <div class="caixa-layout" id="caixa-fundo" onclick="mudarCaixaAtiva('fundo')">
+                        <div class="caixa-tag">Base (Direita)</div>
+                    </div>
+                </div>
+
+                <div class="resultado-card" id="resultado-container" style="display: none;">
+                    <div class="resultado-flex">
+                        <div class="resultado-texto" id="resultado-texto-div"></div>
+                        <img class="resultado-img-lanche" id="resultado-lanche-img" src="" alt="Lanche Pronto">
+                    </div>
+                </div>
+
+                <div class="cozinha-botoes-container">
+                    <button class="btn-cozinha-cancelar" onclick="limparMesaCozinha()">Limpar</button>
+                    <button class="btn-cozinha-confirmar" onclick="confirmarMontagemCozinha()">Confirmar Montagem</button>
+                </div>
+            </div>
+        </div>
     </div>
 
 </div>
