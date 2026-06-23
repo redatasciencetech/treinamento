@@ -3,12 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Méqui Treinamento - Fluxo Oficial</title>
+    <title>Treinamento Operacional</title>
     <style>
-        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #fcfcfc; margin: 0; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 95vh; }
-        .container { max-width: 800px; width: 100%; background: white; border-radius: 20px; box-shadow: 0 10px 40px rgba(0,0,0,0.04); overflow: hidden; display: flex; flex-direction: column; min-height: 650px; border: 1px solid #f2f2f2; }
+        /* TAMANHO E IMAGEM DE FUNDO DA TELA */
+        body { 
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+            background-image: url('images/mcdonalds.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+            background-attachment: fixed; 
+            margin: 0; 
+            padding: 20px; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            min-height: 95vh; 
+        }
+
+        /* CONTAINER PRINCIPAL DO APP */
+        .container { 
+            max-width: 800px; 
+            width: 100%; 
+            background: white; 
+            border-radius: 20px; 
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15); 
+            overflow: hidden; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 650px; 
+            border: 1px solid #f2f2f2; 
+        }
         
-        /* Controle das Telas */
+        /* CONTROLE DAS TELAS */
         .tela { display: none; padding: 40px; flex-direction: column; flex: 1; }
         .tela.ativa { display: flex; }
         
@@ -53,7 +80,7 @@
         .ingrediente-linha img { width: 35px; height: 35px; object-fit: contain; }
         .ingrediente-linha span { font-size: 14px; color: #292929; font-weight: bold; }
 
-        /* TELA 4.5: QUIZ AS CEGAS (NOVA TELA!) */
+        /* TELA 4.5: QUIZ AS CEGAS */
         .quiz-ingredientes-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; max-height: 320px; overflow-y: auto; padding: 5px; border: 1px solid #eaeaea; border-radius: 12px; }
         .card-ingrediente-quiz { display: flex; flex-direction: column; align-items: center; padding: 12px; background: #fff; border: 2px solid #eeeeee; border-radius: 12px; cursor: pointer; transition: 0.2s; text-align: center; }
         .card-ingrediente-quiz:hover { background: #fafafa; border-color: #ccc; }
@@ -81,18 +108,39 @@
         .item-na-caixa { display: flex; align-items: center; background: #292929; color: white; padding: 6px 10px; border-radius: 6px; font-size: 12px; font-weight: bold; animation: surgimento 0.15s ease-out; }
         .item-na-caixa img { width: 22px; height: 22px; object-fit: contain; margin-right: 8px; background: white; border-radius: 3px; }
 
-        /* Botões de Comando Globais */
+        /* BOTÕES DE COMANDO GLOBAIS */
         .cozinha-botoes-container { display: flex; border-top: 1px solid #f2f2f2; margin-top: auto; padding-top: 15px; gap: 10px; }
         .btn-cozinha-cancelar { flex: 1; padding: 15px; background: #e0e0e0; border: none; font-size: 15px; color: #292929; font-weight: bold; border-radius: 10px; cursor: pointer; }
         .btn-cozinha-confirmar { flex: 2; padding: 15px; background: #ffbc0d; border: none; font-size: 15px; color: #292929; font-weight: bold; border-radius: 10px; cursor: pointer; }
 
-        /* Painel de Resultados */
+        /* PAINEL DE RESULTADOS */
         .resultado-card { margin-top: 15px; padding: 15px; border-radius: 12px; background: #f9f9f9; border: 1px solid #e6e6e6; }
         .resultado-flex { display: flex; align-items: center; gap: 15px; }
         .resultado-texto { flex: 1; text-align: left; }
         .resultado-texto h3 { margin: 0 0 5px 0; font-size: 15px; color: #292929; }
         .resultado-texto p { margin: 4px 0; font-size: 13px; color: #4f4f4f; }
         .resultado-img-lanche { width: 80px; height: 80px; object-fit: contain; }
+
+        /* ESTILIZAÇÃO DO RODAPÉ PERSONALIZADO (image_29043e.png) */
+        .app-footer {
+            margin-top: 25px;
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px; /* Aplica o espaçamento esticado da imagem */
+            text-align: center;
+            padding: 10px 24px;
+            background: rgba(245, 247, 250, 0.95); /* Fundo off-white semi-transparente identico ao padrão */
+            border-radius: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+        .footer-name { color: #4c6785; font-family: 'Arial', sans-serif; }
+        .footer-separator { color: #2196F3; font-weight: normal; font-size: 14px; }
+        .footer-tech { color: #d49a15; }
+        .footer-copy { color: #4c6785; font-weight: normal; }
 
         @keyframes surgimento { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     </style>
@@ -101,6 +149,7 @@
 
 <div class="container">
 
+    <!-- TELA 1: APRESENTAÇÃO -->
     <div id="tela-apresentacao" class="tela ativa">
         <div class="centro-apresentacao">
             <div class="logo-m">M</div>
@@ -110,6 +159,7 @@
         </div>
     </div>
 
+    <!-- TELA 2: CATEGORIAS -->
     <div id="tela-categorias" class="tela">
         <button class="btn-voltar" onclick="navegarPara('tela-apresentacao')">◀ Sair</button>
         <h2 class="titulo-secao">Escolha uma Linha de Sanduíches</h2>
@@ -129,12 +179,14 @@
         </div>
     </div>
 
+    <!-- TELA 3: GRID DE LANCHES -->
     <div id="tela-grid-lanches" class="tela">
         <button class="btn-voltar" onclick="navegarPara('tela-categorias')">◀ Voltar para Categorias</button>
         <h2 class="titulo-secao" id="titulo-categoria-atual">Sanduíches</h2>
         <div class="grid-lanches" id="container-grid-lanches"></div>
     </div>
 
+    <!-- TELA 4: FICHA DA RECEITA -->
     <div id="tela-receita" class="tela">
         <button class="btn-voltar" onclick="navegarPara('tela-grid-lanches')">◀ Voltar para a Lista</button>
         <div class="receita-container">
@@ -147,6 +199,7 @@
         </div>
     </div>
 
+    <!-- TELA 4.5: QUIZ ÀS CEGAS -->
     <div id="tela-quiz" class="tela">
         <button class="btn-voltar" onclick="navegarPara('tela-grid-lanches')">◀ Cancelar Treinamento</button>
         <h2 class="titulo-secao" style="margin-bottom: 5px;">Módulo de Treinamento - Etapa 1</h2>
@@ -169,8 +222,9 @@
         </div>
     </div>
 
+    <!-- TELA 5: MESA DE PREPARAÇÃO (COZINHA) -->
     <div id="tela-cozinha" class="tela">
-        <button class="btn-voltar" onclick="navegarPara('tela-grid-lanches')">◀ Sair da Cozinha</button>
+        <button class="btn-voltar" onclick="navegarPara('tela-receita')">◀ Voltar para a Ficha</button>
         <h2 class="titulo-secao" id="cozinha-lanche-titulo">Mesa de Preparação</h2>
         
         <div class="cozinha-split">
@@ -201,7 +255,15 @@
         </div>
     </div>
 
-</div>
+</div> <!-- FIM DO CONTAINER BRANCO -->
+
+<!-- NOVO RODAPÉ ADICIONADO ABAIXO DO APP (image_29043e.png) -->
+<footer class="app-footer">
+    <span class="footer-name">Desenvolvido por ROGÉRIO ESTUMANO</span>
+    <span class="footer-separator">|</span>
+    <span class="footer-tech">DATA SCIENCE & TECH</span>
+    <span class="footer-copy">© 2026</span>
+</footer>
 
 <script src="script.js"></script>
 </body>
