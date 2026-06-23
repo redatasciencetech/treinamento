@@ -42,21 +42,24 @@
         .btn-voltar { background: none; border: none; font-size: 14px; color: #7d7d7d; cursor: pointer; font-weight: bold; margin-bottom: 20px; text-align: left; width: fit-content; display: flex; align-items: center; gap: 5px; }
         .btn-voltar:hover { color: #292929; }
 
-        /* TELA 1: APRESENTAÇÃO */
-        .centro-apresentacao { text-align: center; margin: auto; max-width: 400px; }
+        /* TELA 1: APRESENTAÇÃO / LOGIN IDENTIFICADO */
+        .centro-apresentacao { text-align: center; margin: auto; max-width: 400px; width: 100%; }
         .logo-m { width: 80px; height: 80px; background: #ffbc0d; border-radius: 18px; margin: 0 auto 25px auto; display: flex; align-items: center; justify-content: center; font-size: 45px; font-weight: bold; color: #c8102e; }
         .btn-amarelo { width: 100%; padding: 18px; background: #ffbc0d; border: none; font-size: 16px; color: #292929; font-weight: bold; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 12px rgba(255, 188, 13, 0.2); }
         .btn-amarelo:hover { background: #f5b100; }
+        
+        .input-login { width: 100%; padding: 15px; margin-bottom: 12px; border: 2px solid #eaeaea; border-radius: 10px; box-sizing: border-box; font-size: 15px; font-weight: bold; text-align: center; }
+        .input-login:focus { border-color: #ffbc0d; outline: none; }
 
         /* TELA 2: CATEGORIAS PRINCIPAIS */
         .titulo-secao { font-size: 24px; color: #292929; font-weight: bold; margin: 0 0 30px 0; }
-        .grid-categorias { display: flex; justify-content: center; gap: 40px; margin: auto 0; }
-        .card-categoria { display: flex; flex-direction: column; align-items: center; cursor: pointer; border: none; background: none; transition: transform 0.2s; width: 160px; }
+        .grid-categorias { display: flex; justify-content: center; gap: 40px; margin: auto 0; width: 100%; box-sizing: border-box; }
+        .card-categoria { display: flex; flex-direction: column; align-items: center; cursor: pointer; border: none; background: none; transition: transform 0.2s; width: 160px; padding: 0; box-sizing: border-box; }
         .card-categoria:hover { transform: scale(1.05); }
         .card-categoria img { width: 100px; height: 100px; object-fit: contain; margin-bottom: 15px; }
-        .card-categoria span { font-size: 16px; color: #292929; font-weight: bold; text-align: center; line-height: 1.3; }
+        .card-categoria span { font-size: 16px; color: #292929; font-weight: bold; text-align: center; line-height: 1.3; width: 100%; word-wrap: break-word; }
 
-        /* TELA 3: GRID DE SANDUÍCHES */
+        /* TELA 3: GRID DE LANCHES */
         .grid-lanches { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; overflow-y: auto; }
         .card-lanche { background: #f8f8f8; border-radius: 16px; padding: 20px 15px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; text-align: center; border: 1px solid #eaeaea; min-height: 220px; }
         .card-lanche img { width: 85px; height: 85px; object-fit: contain; margin-bottom: 10px; }
@@ -85,7 +88,7 @@
         .card-ingrediente-quiz { display: flex; flex-direction: column; align-items: center; padding: 12px; background: #fff; border: 2px solid #eeeeee; border-radius: 12px; cursor: pointer; transition: 0.2s; text-align: center; }
         .card-ingrediente-quiz:hover { background: #fafafa; border-color: #ccc; }
         .card-ingrediente-quiz.selecionado { border-color: #ffbc0d; background: #fffdf2; box-shadow: 0 4px 10px rgba(255,188,13,0.15); }
-        .card-ingrediente-quiz img { width: 45px; height: 45px; object-fit: contain; margin-bottom: 8px; }
+        .quiz-ingredientes-grid img { width: 45px; height: 45px; object-fit: contain; margin-bottom: 8px; }
         .card-ingrediente-quiz span { font-size: 12px; color: #292929; font-weight: bold; }
 
         /* TELA 5: MESA DE PREPARAÇÃO (COZINHA) */
@@ -99,14 +102,14 @@
         .cozinha-painel-montagem { display: flex; flex-direction: column; gap: 15px; }
         .caixas-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         
-        .caixa-layout { border: 2px solid #e0e0e0; border-radius: 12px; background: white; padding: 10px; min-height: 180px; display: flex; flex-direction: column-reverse; gap: 6px; cursor: pointer; transition: 0.2s; position: relative; box-shadow: inset 0 2px 6px rgba(0,0,0,0.02); }
+        .caixa-layout { border: 2px solid #e0e0e0; border-radius: 12px; background: white; padding: 10px; min-height: 200px; display: flex; flex-direction: column-reverse; justify-content: flex-start; gap: 6px; cursor: pointer; transition: 0.2s; position: relative; box-shadow: inset 0 2px 6px rgba(0,0,0,0.02); }
         .caixa-layout.ativa { border-color: #ffbc0d; background: #fffdf7; box-shadow: 0 0 0 3px rgba(255, 188, 13, 0.2); }
         
-        .caixa-tag { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #e0e0e0; color: #666; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 10px; text-transform: uppercase; pointer-events: none; }
+        .caixa-tag { position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #e0e0e0; color: #666; font-size: 10px; font-weight: bold; padding: 2px 8px; border-radius: 10px; text-transform: uppercase; pointer-events: none; z-index: 10; }
         .caixa-layout.ativa .caixa-tag { background: #ffbc0d; color: #292929; }
 
-        .item-na-caixa { display: flex; align-items: center; background: #292929; color: white; padding: 6px 10px; border-radius: 6px; font-size: 12px; font-weight: bold; animation: surgimento 0.15s ease-out; }
-        .item-na-caixa img { width: 22px; height: 22px; object-fit: contain; margin-right: 8px; background: white; border-radius: 3px; }
+        .item-na-caixa { display: flex; align-items: center; justify-content: center; animation: surgimento 0.15s ease-out; margin: 0 auto; width: 100%; }
+        .item-na-caixa img { width: 55px; height: 55px; object-fit: contain; background: transparent; }
 
         /* BOTÕES DE COMANDO GLOBAIS */
         .cozinha-botoes-container { display: flex; border-top: 1px solid #f2f2f2; margin-top: auto; padding-top: 15px; gap: 10px; }
@@ -121,26 +124,63 @@
         .resultado-texto p { margin: 4px 0; font-size: 13px; color: #4f4f4f; }
         .resultado-img-lanche { width: 80px; height: 80px; object-fit: contain; }
 
-        /* ESTILIZAÇÃO DO RODAPÉ PERSONALIZADO (image_29043e.png) */
+        /* TABELAS E DASHBOARDS */
+        .tabela-wrapper { overflow-x: auto; margin-top: 15px; background: white; border-radius: 10px; border: 1px solid #eaeaea; margin-bottom: 25px; }
+        table { width: 100%; border-collapse: collapse; text-align: left; font-size: 14px; }
+        th, td { padding: 12px 15px; border-bottom: 1px solid #f2f2f2; }
+        th { background-color: #f9f9f9; color: #292929; font-weight: bold; }
+        .badge-nota { padding: 4px 8px; border-radius: 6px; font-weight: bold; font-size: 12px; }
+        .nota-alta { background: #d4edda; color: #155724; }
+        .nota-baixa { background: #f8d7da; color: #721c24; }
+
+        /* Grid Organizador do Rodapé do Admin */
+        .admin-grid-management { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 15px; }
+
+        /* RODAPÉ PREMIUM CÁPSULA */
         .app-footer {
             margin-top: 25px;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: bold;
-            letter-spacing: 2px; /* Aplica o espaçamento esticado da imagem */
+            letter-spacing: 2px;
             text-align: center;
-            padding: 10px 24px;
-            background: rgba(245, 247, 250, 0.95); /* Fundo off-white semi-transparente identico ao padrão */
+            padding: 12px 32px;
+            background: rgba(245, 247, 250, 0.95);
             border-radius: 30px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.04);
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
         }
-        .footer-name { color: #4c6785; font-family: 'Arial', sans-serif; }
-        .footer-separator { color: #2196F3; font-weight: normal; font-size: 14px; }
+        .footer-name { color: #4c6785; font-family: 'Arial', sans-serif; font-weight: bold; }
+        .footer-separator { color: #2196F3; font-weight: normal; font-size: 15px; margin: 0 4px; }
         .footer-tech { color: #d49a15; }
         .footer-copy { color: #4c6785; font-weight: normal; }
+
+        /* REGRAS DE RESPONSIVIDADE PARA CELULARES */
+        @media (max-width: 600px) {
+            body { padding: 10px; min-height: 92vh; }
+            .container { min-height: auto; border-radius: 16px; }
+            .tela { padding: 25px 15px; }
+            .titulo-secao { font-size: 20px; text-align: center; margin-bottom: 20px; }
+            .grid-categorias { gap: 10px; justify-content: space-around; }
+            .card-categoria { width: 30%; min-width: 90px; }
+            .card-categoria img { width: 65px; height: 65px; margin-bottom: 8px; }
+            .card-categoria span { font-size: 11px; line-height: 1.2; }
+            .grid-lanches { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); gap: 12px; }
+            .card-lanche { padding: 12px 8px; min-height: 180px; }
+            .card-lanche img { width: 65px; height: 65px; }
+            .card-lanche span { font-size: 12px; margin-bottom: 8px; }
+            .receita-container { grid-template-columns: 1fr; gap: 20px; }
+            .receita-esquerda { text-align: center; }
+            .receita-esquerda h2 { font-size: 24px; text-align: center; }
+            .receita-esquerda img { width: 140px; height: 140px; margin: 0 auto 15px auto; }
+            .receita-direita { border-left: none; padding-left: 0; border-top: 1px solid #f2f2f2; padding-top: 15px; }
+            .cozinha-split { grid-template-columns: 1fr; gap: 20px; }
+            .cozinha-ingredientes-lista { max-height: 220px; }
+            .app-footer { font-size: 9px; letter-spacing: 0.5px; padding: 8px 18px; gap: 4px; margin-top: 15px; width: 95%; }
+            .footer-separator { font-size: 11px; margin: 0 1px; }
+        }
 
         @keyframes surgimento { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
     </style>
@@ -149,20 +189,40 @@
 
 <div class="container">
 
-    <!-- TELA 1: APRESENTAÇÃO -->
     <div id="tela-apresentacao" class="tela ativa">
         <div class="centro-apresentacao">
             <div class="logo-m">M</div>
             <h1 style="font-size: 26px; margin-bottom: 10px;">Treinamento Operacional</h1>
-            <p style="color: #7d7d7d; font-size: 15px; line-height: 1.5; margin-bottom: 30px;">Bem-vindo ao sistema de capacitação de montagem de lanches.</p>
-            <button class="btn-amarelo" onclick="navegarPara('tela-categorias')">Iniciar Sistema</button>
+            <p style="color: #7d7d7d; font-size: 14px; line-height: 1.5; margin-bottom: 25px;">Insira suas credenciais para acessar as tarefas da cozinha.</p>
+            
+            <input type="text" id="input-colaborador" class="input-login" placeholder="Nome do Colaborador">
+            <input type="password" id="input-senha" class="input-login" placeholder="Senha de Acesso">
+            
+            <button class="btn-amarelo" onclick="realizarLogin()">Acessar Sistema</button>
+            <button class="btn-acao-lanche btn-estudar" style="margin-top: 15px; width: 100%; padding: 12px; border-radius: 10px; font-weight: bold;" onclick="navegarPara('tela-cadastro')">Novo por aqui? Cadastre-se</button>
         </div>
     </div>
 
-    <!-- TELA 2: CATEGORIAS -->
+    <div id="tela-cadastro" class="tela">
+        <button class="btn-voltar" onclick="navegarPara('tela-apresentacao')">◀ Cancelar e Voltar</button>
+        <div class="centro-apresentacao">
+            <div class="logo-m">M</div>
+            <h2 class="titulo-secao" style="margin-bottom: 5px; text-align: center;">Crie seu Perfil</h2>
+            <p style="color: #7d7d7d; font-size: 14px; line-height: 1.5; margin-bottom: 25px; text-align: center;">Defina seu nome e uma senha de acesso única para salvar seus registros.</p>
+            
+            <input type="text" id="cadastro-nome" class="input-login" placeholder="Nome Completo">
+            <input type="password" id="cadastro-senha" class="input-login" placeholder="Crie uma Senha">
+            
+            <button class="btn-amarelo" style="background: #007a33; color: white;" onclick="executarAutoCadastro()">Confirmar Meu Cadastro</button>
+        </div>
+    </div>
+
     <div id="tela-categorias" class="tela">
-        <button class="btn-voltar" onclick="navegarPara('tela-apresentacao')">◀ Sair</button>
-        <h2 class="titulo-secao">Escolha uma Linha de Sanduíches</h2>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+            <button class="btn-voltar" style="margin-bottom:0;" onclick="navegarPara('tela-apresentacao')">◀ Sair</button>
+            <button class="btn-acao-lanche btn-estudar" style="max-width: 150px; padding: 8px 12px;" onclick="verMeuHistóricoPessoal()">Meu Desempenho</button>
+        </div>
+        <h2 class="titulo-secao" id="boas-vindas-usuario">Escolha uma Linha de Sanduíches</h2>
         <div class="grid-categorias">
             <button class="card-categoria" onclick="carregarGridLanches('bovina')">
                 <img src="" alt="Carne Bovina">
@@ -179,14 +239,12 @@
         </div>
     </div>
 
-    <!-- TELA 3: GRID DE LANCHES -->
     <div id="tela-grid-lanches" class="tela">
         <button class="btn-voltar" onclick="navegarPara('tela-categorias')">◀ Voltar para Categorias</button>
         <h2 class="titulo-secao" id="titulo-categoria-atual">Sanduíches</h2>
         <div class="grid-lanches" id="container-grid-lanches"></div>
     </div>
 
-    <!-- TELA 4: FICHA DA RECEITA -->
     <div id="tela-receita" class="tela">
         <button class="btn-voltar" onclick="navegarPara('tela-grid-lanches')">◀ Voltar para a Lista</button>
         <div class="receita-container">
@@ -199,7 +257,6 @@
         </div>
     </div>
 
-    <!-- TELA 4.5: QUIZ ÀS CEGAS -->
     <div id="tela-quiz" class="tela">
         <button class="btn-voltar" onclick="navegarPara('tela-grid-lanches')">◀ Cancelar Treinamento</button>
         <h2 class="titulo-secao" style="margin-bottom: 5px;">Módulo de Treinamento - Etapa 1</h2>
@@ -216,13 +273,12 @@
         </div>
 
         <div class="cozinha-botoes-container" style="margin-top: 25px; padding: 0;">
-            <button class="btn-cozinha-cancelar" id="btn-quiz-reiniciar" onclick="reiniciarQuiz()" style="display: none;">Tentar Outra Vez</button>
+            <button class="btn-cozinha-cancelar" id="btn-quiz-reiniciar" onclick="reiniciarQuiz()">Tentar Outra Vez</button>
             <button class="btn-cozinha-confirmar" id="btn-quiz-verificar" onclick="verificarRespostasQuiz()">Verificar Ingredientes</button>
-            <button class="btn-cozinha-confirmar" id="btn-quiz-avancar" onclick="irParaCozinha()" style="display: none; background: #007a33; color: white;">Avançar para Montagem (Etapa 2) ➔</button>
+            <button class="btn-cozinha-confirmar" id="btn-quiz-avancar" onclick="dispararCronometroEAvancar()">Avançar para Montagem (Etapa 2) ➔</button>
         </div>
     </div>
 
-    <!-- TELA 5: MESA DE PREPARAÇÃO (COZINHA) -->
     <div id="tela-cozinha" class="tela">
         <button class="btn-voltar" onclick="navegarPara('tela-receita')">◀ Voltar para a Ficha</button>
         <h2 class="titulo-secao" id="cozinha-lanche-titulo">Mesa de Preparação</h2>
@@ -255,11 +311,79 @@
         </div>
     </div>
 
-</div> <!-- FIM DO CONTAINER BRANCO -->
+    <div id="tela-admin" class="tela">
+        <button class="btn-voltar" onclick="navegarPara('tela-apresentacao')">◀ Sair do Painel Admin</button>
+        <h2 class="titulo-secao" style="margin-bottom:5px;">📊 Dashboard de Performance Geral</h2>
+        <p style="font-size:14px; color:#666; margin-top:0; margin-bottom:20px;">Relatório completo de treinamento da equipe da loja.</p>
+        
+        <div class="tabela-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Colaborador</th>
+                        <th>Sanduíche</th>
+                        <th>Aproveitamento</th>
+                        <th>Acertos/Erros</th>
+                        <th>Tempo gasto</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody id="admin-tabela-corpo"></tbody>
+            </table>
+        </div>
 
-<!-- NOVO RODAPÉ ADICIONADO ABAIXO DO APP (image_29043e.png) -->
-<footer class="app-footer">
-    <span class="footer-name">Desenvolvido por ROGÉRIO ESTUMANO</span>
+        <div class="admin-grid-management">
+            <div>
+                <h2 class="titulo-secao" style="margin-bottom:5px; font-size: 19px;">🔑 Chaves de Acesso Ativas</h2>
+                <p style="font-size:13px; color:#666; margin-top:0; margin-bottom:15px;">Lista de usuários da loja e senhas atuais para consulta.</p>
+                <div class="tabela-wrapper" style="margin-top:0;">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Colaborador</th>
+                                <th>Senha Operacional</th>
+                            </tr>
+                        </thead>
+                        <tbody id="admin-tabela-senhas-corpo"></tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div>
+                <h2 class="titulo-secao" style="margin-bottom:5px; font-size: 19px;">🛠️ Redefinir Credenciais da Equipe</h2>
+                <p style="font-size:13px; color:#666; margin-top:0; margin-bottom:15px;">Atualize ou altere o login/senha de colaboradores que esqueceram:</p>
+                <div style="background: #fdfdfd; padding: 20px; border-radius: 12px; border: 1px solid #eaeaea; box-sizing: border-box;">
+                    <input type="text" id="admin-alt-usuario-atual" class="input-login" style="margin-bottom: 10px; font-size: 14px; padding: 12px; text-align: left;" placeholder="Nome cadastrado atual (ex: João)">
+                    <input type="text" id="admin-alt-usuario-novo" class="input-login" style="margin-bottom: 10px; font-size: 14px; padding: 12px; text-align: left;" placeholder="Novo Nome de Login (deixe vazio se não mudar)">
+                    <input type="text" id="admin-alt-senha-nova" class="input-login" style="margin-bottom: 15px; font-size: 14px; padding: 12px; text-align: left;" placeholder="Nova Senha Operacional">
+                    <button class="btn-amarelo" style="padding: 14px; font-size: 14px; border-radius: 8px;" onclick="alterarCredenciaisPorAdmin()">Salvar Novas Credenciais</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="tela-historico-usuario" class="tela">
+        <button class="btn-voltar" onclick="navegarPara('tela-categorias')">◀ Voltar para o Menu</button>
+        <h2 class="titulo-secao" id="titulo-historico-pessoal">Meu Histórico de Treinos</h2>
+        
+        <div class="tabela-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sanduíche</th>
+                        <th>Aproveitamento</th>
+                        <th>Acertos/Erros</th>
+                        <th>Tempo de Montagem</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody id="usuario-tabela-corpo"></tbody>
+            </table>
+        </div>
+    </div>
+
+</div> <footer class="app-footer">
+    <span class="footer-name">ROGÉRIO ESTUMANO</span>
     <span class="footer-separator">|</span>
     <span class="footer-tech">DATA SCIENCE & TECH</span>
     <span class="footer-copy">© 2026</span>

@@ -1,3 +1,9 @@
+// 🔑 CREDENCIAIS FIXAS MASTER DO SISTEMA
+const bancoDadosUsuariosFixos = {
+    "admin": "4321",       // Senha Master da Gerente
+    "rogério": "eu2026"  // Sua senha de Desenvolvedor
+};
+
 // 1. BANCO DE DADOS MESTRE DE TODOS OS INGREDIENTES DA COZINHA
 const bancoDadosIngredientes = {
     "Pão com Gergelim": { img: "images/ingredientes/pao_gergelim.png" },
@@ -57,6 +63,8 @@ const bancoDadosMenu = {
 };
 
 // Variáveis de Estado Globais
+let usuarioAtivo = "";
+let tempoInicio = 0;
 let categoriaAtiva = "";
 let lancheAtivoId = "";
 let escolhasQuiz = [];
@@ -69,6 +77,63 @@ function navegarPara(idTela) {
     document.getElementById(idTela).classList.add('ativa');
 }
 
+function realizarLogin() {
+    const inputNome = document.getElementById("input-colaborador").value.trim();
+    const inputSenha = document.getElementById("input-senha").value.trim();
+
+    if (!inputNome || !inputSenha) {
+        alert("Por favor, preencha o Usuário e a Senha!");
+        return;
+    }
+
+    const usuarioChave = inputNome.toLowerCase();
+    const usuariosCadastrados = JSON.parse(localStorage.getItem("mequi_usuarios")) || {};
+    const senhaValida = bancoDadosUsuariosFixos[usuarioChave] || usuariosCadastrados[usuarioChave];
+
+    if (senhaValida && senhaValida === inputSenha) {
+        usuarioAtivo = inputNome;
+        
+        document.getElementById("input-colaborador").value = "";
+        document.getElementById("input-senha").value = "";
+
+        if (usuarioChave === "admin") {
+            carregarDashboardAdmin();
+        } else {
+            document.getElementById("boas-vindas-usuario").innerText = `Olá, ${usuarioAtivo}! Escolha uma Linha de Sanduíches`;
+            navegarPara('tela-categorias');
+        }
+    } else {
+        alert("❌ Usuário ou senha incorretos!");
+    }
+}
+
+function executarAutoCadastro() {
+    const nome = document.getElementById("cadastro-nome").value.trim();
+    const senha = document.getElementById("cadastro-senha").value.trim();
+
+    if (!nome || !senha) {
+        alert("Por favor, preencha todos os campos para se cadastrar!");
+        return;
+    }
+
+    const usuarioChave = nome.toLowerCase();
+    const usuariosCadastrados = JSON.parse(localStorage.getItem("mequi_usuarios")) || {};
+
+    if (bancoDadosUsuariosFixos[usuarioChave] || usuariosCadastrados[usuarioChave]) {
+        alert("❌ Este nome de usuário já está cadastrado no sistema!");
+        return;
+    }
+
+    usuariosCadastrados[usuarioChave] = senha;
+    localStorage.setItem("mequi_usuarios", JSON.stringify(usuariosCadastrados));
+
+    alert(`🎉 Perfil de "${nome}" criado com sucesso! Use suas credenciais para fazer login.`);
+    
+    document.getElementById("cadastro-nome").value = "";
+    document.getElementById("cadastro-senha").value = "";
+    navegarPara('tela-apresentacao');
+}
+
 function inicializarCategorias() {
     const imgsCategorias = document.querySelectorAll('.card-categoria img');
     if(imgsCategorias[0]) imgsCategorias[0].src = bancoDadosMenu.bovina.imgCategoria;
@@ -76,7 +141,6 @@ function inicializarCategorias() {
     if(imgsCategorias[2]) imgsCategorias[2].src = bancoDadosMenu.frango.imgCategoria;
 }
 
-// Carrega o Grid de Lanches com AÇÃO DUPLA (Estudar vs Treinar)
 function carregarGridLanches(keyCategoria) {
     categoriaAtiva = keyCategoria;
     const dadosCategoria = bancoDadosMenu[keyCategoria];
@@ -87,7 +151,6 @@ function carregarGridLanches(keyCategoria) {
 
     Object.keys(dadosCategoria.itens).forEach(keyLanche => {
         const lanche = dadosCategoria.itens[keyLanche];
-        
         const card = document.createElement("div");
         card.className = "card-lanche";
         
@@ -105,7 +168,6 @@ function carregarGridLanches(keyCategoria) {
     navegarPara('tela-grid-lanches');
 }
 
-// MÓDULO 1: MODO DE ESTUDO (Exibe receita completa com imagem)
 function carregarFichaReceita(keyLanche) {
     lancheAtivoId = keyLanche;
     const lanche = bancoDadosMenu[categoriaAtiva].itens[keyLanche];
@@ -132,10 +194,6 @@ function carregarFichaReceita(keyLanche) {
     navegarPara('tela-receita');
 }
 
-// =========================================================================
-// MÓDULO 2: TREINAMENTO ÀS CEGAS (ETAPA 1: ADIVINHAR INGREDIENTES DA DESPENSA)
-// =========================================================================
-
 function iniciarMóduloQuiz(keyLanche) {
     lancheAtivoId = keyLanche;
     const lanche = bancoDadosMenu[categoriaAtiva].itens[keyLanche];
@@ -146,16 +204,14 @@ function iniciarMóduloQuiz(keyLanche) {
     const containerGrid = document.getElementById("quiz-container-ingredientes");
     containerGrid.innerHTML = "";
 
-    // Puxa TODOS os ingredientes cadastrados na loja para testar o funcionário
     Object.keys(bancoDadosIngredientes).forEach(nomeIngrediente => {
         const itemObj = bancoDadosIngredientes[nomeIngrediente];
-        
         const cardItem = document.createElement("div");
         cardItem.className = "card-ingrediente-quiz";
         cardItem.onclick = () => selecionarIngredienteQuiz(nomeIngrediente, cardItem);
         
         cardItem.innerHTML = `
-            <img src="${itemObj.img}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 24 24\'><rect width=\'24\' height=\'24\' fill=\'%23f2f2f2\'/></svg>'">
+            <img src="${itemObj.img}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24'><rect width='24' height='24' fill='%23f2f2f2'/></svg>'">
             <span>${nomeIngrediente}</span>
         `;
         containerGrid.appendChild(cardItem);
@@ -191,8 +247,6 @@ function verificarRespostasQuiz() {
     });
 
     const totalItensReceita = receitaOficialUnificada.length;
-    
-    // Fórmula matemática do Score: desconta erros de marcação indevida para evitar fraudes (clicar em tudo)
     let porcentagemAcerto = Math.round(((acertos - erros) / totalItensReceita) * 100);
     if (porcentagemAcerto < 0) porcentagemAcerto = 0;
 
@@ -230,9 +284,10 @@ function reiniciarQuiz() {
     document.querySelectorAll('.card-ingrediente-quiz').forEach(el => el.classList.remove("selecionado"));
 }
 
-// =========================================================================
-// MÓDULO 3: MESA DE PREPARAÇÃO (SÓ ACESSÍVEL VIA CÓDIGO APÓS OS 100%)
-// =========================================================================
+function dispararCronometroEAvancar() {
+    tempoInicio = Date.now();
+    irParaCozinha();
+}
 
 function irParaCozinha() {
     const lanche = bancoDadosMenu[categoriaAtiva].itens[lancheAtivoId];
@@ -240,7 +295,6 @@ function irParaCozinha() {
     
     limparMesaCozinha();
     
-    // Carrega apenas os ingredientes válidos daquele lanche e os embaralha para o teste de sequência
     const ingredientesDoLanche = [...lanche.receitaTampa, ...lanche.receitaBase];
     const listaEmbaralhada = ingredientesDoLanche.sort(() => Math.random() - 0.5);
 
@@ -297,11 +351,10 @@ function criarTagItemCozinha(nomeItem) {
     div.className = "item-na-caixa";
     const img = document.createElement("img");
     img.src = bancoDadosIngredientes[nomeItem].img;
-    img.onerror = () => { img.style.display = 'none'; };
-    const text = document.createElement("span");
-    text.innerText = nomeItem;
+    img.onerror = () => { 
+        img.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24'><circle cx='12' cy='12' r='6' fill='%23ffbc0d'/></svg>"; 
+    };
     div.appendChild(img);
-    div.appendChild(text);
     return div;
 }
 
@@ -313,44 +366,207 @@ function limparMesaCozinha() {
     document.getElementById("resultado-container").style.display = "none";
 }
 
-// Lógica de cálculo matemático de acertos modificada para ocultar a imagem em caso de erro
 function confirmarMontagemCozinha() {
+    const tempoFim = Date.now();
+    const tempoGastoSegundos = Math.round((tempoFim - tempoInicio) / 1000);
+
     const lanche = bancoDadosMenu[categoriaAtiva].itens[lancheAtivoId];
     let acertosSequencia = 0;
-    const totalItensReceita = lanche.receitaTampa.length + lanche.receitaBase.length;
+    
+    const receitaFundoFinal = lanche.receitaBase || lanche.receitaFundo;
+    const totalItensReceita = lanche.receitaTampa.length + receitaFundoFinal.length;
 
     lanche.receitaTampa.forEach((ingrediente, i) => {
         if (escolhasTampa[i] === ingrediente) acertosSequencia++;
     });
 
-    lanche.receitaBase.forEach((ingrediente, i) => {
+    receitaFundoFinal.forEach((ingrediente, i) => {
         if (escolhasFundo[i] === ingrediente) acertosSequencia++;
     });
 
     const pctSequencia = Math.round((acertosSequencia / totalItensReceita) * 100);
+    const errosQuantidade = totalItensReceita - acertosSequencia;
 
-    // Exibe o container de resultados
+    salvarRegistroTreino(lanche.nome, pctSequencia, acertosSequencia, errosQuantidade, tempoGastoSegundos);
+
     document.getElementById("resultado-container").style.display = "block";
-    
-    // 📍 AJUSTE AQUI: Seleciona a tag da imagem
     const imgLanche = document.getElementById("resultado-lanche-img");
     
-    // Só exibe a imagem se o padrão operacional for perfeito (100%)
     if (pctSequencia === 100) {
         imgLanche.src = lanche.img;
-        imgLanche.style.display = "block"; // Mostra a imagem
+        imgLanche.style.display = "block";
     } else {
-        imgLanche.style.display = "none";  // Esconde a imagem completamente
+        imgLanche.style.display = "none";
     }
     
     const divTexto = document.getElementById("resultado-texto-div");
     divTexto.innerHTML = `
         <h3>📋 Resultado da Montagem:</h3>
         <p><strong>Padrão Operacional:</strong> ${pctSequencia}%</p>
+        <p><strong>Tempo de Montagem:</strong> ${tempoGastoSegundos}s</p>
+        <p><strong>Balanço:</strong> ${acertosSequencia} acertos / ${errosQuantidade} erros</p>
         <p style="font-size:12px; color: ${pctSequencia === 100 ? '#007a33' : '#c8102e'}; font-weight:bold; margin-top:5px;">
-            ${pctSequencia === 100 ? "🎉 Padrão Méqui Perfeito!" : "❌ Ordem incorreta ou item fora da caixa."}
+            ${pctSequencia === 100 ? "🎉 Padrão Méqui Perfeito!" : "❌ Ordem incorreta. Limpe e tente novamente!"}
         </p>
     `;
+}
+
+function salvarRegistroTreino(nomeLanche, nota, acertos, erros, segundos) {
+    let historicoGeral = JSON.parse(localStorage.getItem("mequi_historico")) || [];
+    const novoRegistro = {
+        colaborador: usuarioAtivo,
+        lanche: nomeLanche,
+        porcentagem: nota,
+        acertosErros: `${acertos}/${erros}`,
+        tempo: `${segundos}s`,
+        data: new Date().toLocaleDateString('pt-BR')
+    };
+    historicoGeral.unshift(novoRegistro);
+    localStorage.setItem("mequi_historico", JSON.stringify(historicoGeral));
+}
+
+function carregarDashboardAdmin() {
+    navegarPara('tela-admin');
+    
+    const tabelaCorpo = document.getElementById("admin-tabela-corpo");
+    tabelaCorpo.innerHTML = "";
+    const historicoGeral = JSON.parse(localStorage.getItem("mequi_historico")) || [];
+
+    if (historicoGeral.length === 0) {
+        tabelaCorpo.innerHTML = `<tr><td colspan="6" style="text-align:center; color:#666;">Nenhum colaborador realizou treinos ainda.</td></tr>`;
+    } else {
+        historicoGeral.forEach(reg => {
+            const tr = document.createElement("tr");
+            const classeBadge = reg.porcentagem === 100 ? "nota-alta" : "nota-baixa";
+            tr.innerHTML = `
+                <td><strong>${reg.colaborador}</strong></td>
+                <td>${reg.lanche}</td>
+                <td><span class="badge-nota ${classeBadge}">${reg.porcentagem}%</span></td>
+                <td>${reg.acertosErros}</td>
+                <td>${reg.tempo}</td>
+                <td>${reg.data}</td>
+            `;
+            tabelaCorpo.appendChild(tr);
+        });
+    }
+
+    const tabelaSenhasCorpo = document.getElementById("admin-tabela-senhas-corpo");
+    tabelaSenhasCorpo.innerHTML = "";
+    const usuariosCadastrados = JSON.parse(localStorage.getItem("mequi_usuarios")) || {};
+
+    const trFixo = document.createElement("tr");
+    trFixo.innerHTML = `<td><strong>Rogério</strong></td><td><code style="color:#007a33; font-weight:bold;">mequi2026</code></td>`;
+    tabelaSenhasCorpo.appendChild(trFixo);
+
+    const chavesEquipe = Object.keys(usuariosCadastrados);
+    if (chavesEquipe.length === 0) {
+        const trVazio = document.createElement("tr");
+        trVazio.innerHTML = `<td colspan="2" style="text-align:center; color:#7d7d7d; font-size:12px;">Nenhum colaborador se auto-cadastrou ainda.</td>`;
+        tabelaSenhasCorpo.appendChild(trVazio);
+    } else {
+        chavesEquipe.forEach(colaborador => {
+            const tr = document.createElement("tr");
+            const nomeFormatado = colaborador.charAt(0).toUpperCase() + colaborador.slice(1);
+            tr.innerHTML = `
+                <td><strong>${nomeFormatado}</strong></td>
+                <td><code>${usuariosCadastrados[colaborador]}</code></td>
+            `;
+            tabelaSenhasCorpo.appendChild(tr);
+        });
+    }
+}
+
+// 🎯 NOVO MÓDULO: Função que permite ao Administrador sobrescrever e corrigir credenciais esquecidas
+function alterarCredenciaisPorAdmin() {
+    const usuarioAtual = document.getElementById("admin-alt-usuario-atual").value.trim().toLowerCase();
+    const usuarioNovo = document.getElementById("admin-alt-usuario-novo").value.trim();
+    const senhaNova = document.getElementById("admin-alt-senha-nova").value.trim();
+
+    if (!usuarioAtual) {
+        alert("Por favor, digite o nome atual do colaborador cadastrado!");
+        return;
+    }
+
+    if (!usuarioNovo && !senhaNova) {
+        alert("Por favor, preencha o Novo Nome de Login ou a Nova Senha para salvar!");
+        return;
+    }
+
+    let usuariosCadastrados = JSON.parse(localStorage.getItem("mequi_usuarios")) || {};
+
+    // Valida se o funcionário realmente existe
+    if (!usuariosCadastrados[usuarioAtual]) {
+        alert("❌ Colaborador não encontrado! Verifique a grafia exata na tabela ao lado.");
+        return;
+    }
+
+    const senhaExistente = usuariosCadastrados[usuarioAtual];
+    const senhaFinal = senhaNova ? senhaNova : senhaExistente;
+    const nomeFinalExibicao = usuarioNovo ? usuarioNovo : usuarioAtual;
+    const nomeFinalChave = nomeFinalExibicao.toLowerCase();
+
+    // Impede alteração caso tentem duplicar o login de outra pessoa
+    if (usuarioNovo && nomeFinalChave !== usuarioAtual && (bancoDadosUsuariosFixos[nomeFinalChave] || usuariosCadastrados[nomeFinalChave])) {
+        alert("❌ Erro: Este novo nome de usuário já está sendo utilizado por outro colaborador!");
+        return;
+    }
+
+    // LÓGICA REACIONAL: Se o login mudou, transfere os dados e atualiza o histórico passado!
+    if (usuarioNovo && nomeFinalChave !== usuarioAtual) {
+        delete usuariosCadastrados[usuarioAtual]; // Remove a chave antiga
+        
+        let historicoGeral = JSON.parse(localStorage.getItem("mequi_historico")) || [];
+        historicoGeral.forEach(reg => {
+            if (reg.colaborador.toLowerCase() === usuarioAtual) {
+                reg.colaborador = nomeFinalExibicao; // Alinha os treinos antigos ao novo nome
+            }
+        });
+        localStorage.setItem("mequi_historico", JSON.stringify(historicoGeral));
+    }
+
+    // Salva na memória do navegador
+    usuariosCadastrados[nomeFinalChave] = senhaFinal;
+    localStorage.setItem("mequi_usuarios", JSON.stringify(usuariosCadastrados));
+
+    alert(`✅ Credenciais de "${nomeFinalExibicao}" atualizadas com sucesso pela gerência!`);
+
+    // Limpa os inputs do formulário de redefinição
+    document.getElementById("admin-alt-usuario-atual").value = "";
+    document.getElementById("admin-alt-usuario-novo").value = "";
+    document.getElementById("admin-alt-senha-nova").value = "";
+
+    // Recarrega instantaneamente as tabelas na tela do Admin
+    carregarDashboardAdmin();
+}
+
+function verMeuHistóricoPessoal() {
+    navegarPara('tela-historico-usuario');
+    document.getElementById("titulo-historico-pessoal").innerText = `Desempenho de: ${usuarioAtivo}`;
+    
+    const tabelaCorpo = document.getElementById("usuario-tabela-corpo");
+    tabelaCorpo.innerHTML = "";
+
+    const historicoGeral = JSON.parse(localStorage.getItem("mequi_historico")) || [];
+    const meusTreinos = historicoGeral.filter(reg => reg.colaborador.toLowerCase() === usuarioAtivo.toLowerCase());
+
+    if (meusTreinos.length === 0) {
+        tabelaCorpo.innerHTML = `<tr><td colspan="5" style="text-align:center; color:#666;">Você ainda não completou nenhuma montagem.</td></tr>`;
+        return;
+    }
+
+    meusTreinos.forEach(reg => {
+        const tr = document.createElement("tr");
+        const classeBadge = reg.porcentagem === 100 ? "nota-alta" : "nota-baixa";
+
+        tr.innerHTML = `
+            <td>${reg.lanche}</td>
+            <td><span class="badge-nota ${classeBadge}">${reg.porcentagem}%</span></td>
+            <td>${reg.acertosErros}</td>
+            <td>${reg.tempo}</td>
+            <td>${reg.data}</td>
+        `;
+        tabelaCorpo.appendChild(tr);
+    });
 }
 
 inicializarCategorias();
