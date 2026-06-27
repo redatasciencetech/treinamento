@@ -4,22 +4,27 @@ const bancoDadosUsuariosFixos = {
     "rogério": "eu2026"  // Sua senha de Desenvolvedor
 };
 
-// 1. BANCO DE DADOS MESTRE DE TODOS OS INGREDIENTES DA COZINHA
+// 1. BANCO DE DADOS MESTRE DE TODOS OS INGREDIENTES DA COZINHA (Atualizado com novos itens!)
 const bancoDadosIngredientes = {
     "Pão com Gergelim": { img: "images/ingredientes/pao_gergelim.png" },
+    "Pão Regular": { img: "images/ingredientes/pao_regular.png" }, // Novo!
     "Pão Brioche Batata": { img: "images/ingredientes/pao_brioche.png" },
     "Molho Especial": { img: "images/ingredientes/molho_especial.png" },
     "Molho Ranch": { img: "images/ingredientes/molho_ranch.png" },
+    "Mostarda": { img: "images/ingredientes/mostarda.png" }, // Novo!
+    "Ketchup": { img: "images/ingredientes/ketchup.png" }, // Novo!
     "Fatia Queijo Cheddar": { img: "images/ingredientes/queijo_cheddar.png" },
     "Carne 100% Bovina": { img: "images/ingredientes/carne_bovina.png" },
+    "Carne 10:1 100% Bovina": { img: "images/ingredientes/carne_101.png" }, // Novo!
     "Frango Crispy": { img: "images/ingredientes/frango_crispy.png" },
     "Alface": { img: "images/ingredientes/alface.png" },
     "Tomate": { img: "images/ingredientes/tomate.png" },
     "Bacon": { img: "images/ingredientes/bacon.png" },
-    "Picles": { img: "images/ingredientes/picles.png" }
+    "Picles": { img: "images/ingredientes/picles.png" },
+    "Cebola Reidratada": { img: "images/ingredientes/cebola_reidratada.png" } // Novo!
 };
 
-// 2. BANCO DE DADOS DO MENU E RECEITAS
+// 2. BANCO DE DADOS DO MENU E RECEITAS (Com o Cheeseburger incluso!)
 const bancoDadosMenu = {
     bovina: {
         titulo: "Sanduíches de Carne Bovina",
@@ -31,6 +36,13 @@ const bancoDadosMenu = {
                 descricao: "Dois hambúrgueres (100% carne bovina), alface americana, queijo cheddar, maionese Big Mac, cebola, picles e pão com gergelim.",
                 receitaTampa: ["Pão com Gergelim", "Molho Especial", "Alface", "Picles"],
                 receitaBase: ["Fatia Queijo Cheddar", "Carne 100% Bovina"]
+            },
+            "cheeseburguer": {
+                nome: "Cheeseburger",
+                img: "images/bovina/cheeseburguer.png",
+                descricao: "Um hamburguer (100% carne bovina), queijo cheddar, cebola, picles, ketchup, mostarda e pão sem gergelim (pão regular).",
+                receitaTampa: ["Pão Regular", "Mostarda", "Ketchup", "Picles", "Queijo Cheddar"],
+                receitaBase: ["Carne 10:1 100% Bovina", "Cebola Reidratada"]
             }
         }
     },
@@ -211,7 +223,7 @@ function iniciarMóduloQuiz(keyLanche) {
         cardItem.onclick = () => selecionarIngredienteQuiz(nomeIngrediente, cardItem);
         
         cardItem.innerHTML = `
-            <img src="${itemObj.img}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24'><rect width='24' height='24' fill='%23f2f2f2'/></svg>'">
+            <img src="${itemObj.img}" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\' width=\'40\' height=\'40\' viewBox=\'0 0 24 24\'><rect width=\'24\' height=\'24\' fill=\'%23f2f2f2\'/></svg>'">
             <span>${nomeIngrediente}</span>
         `;
         containerGrid.appendChild(cardItem);
@@ -322,7 +334,7 @@ function irParaCozinha() {
 }
 
 function mudarCaixaAtiva(caixa) {
-    caixaAtiva = caixa;
+    caixaAtiva = box = caixa;
     document.getElementById("caixa-tampa").classList.toggle("ativa", caixa === "tampa");
     document.getElementById("caixa-fundo").classList.toggle("ativa", caixa === "fundo");
 }
@@ -476,7 +488,6 @@ function carregarDashboardAdmin() {
     }
 }
 
-// 🎯 NOVO MÓDULO: Função que permite ao Administrador sobrescrever e corrigir credenciais esquecidas
 function alterarCredenciaisPorAdmin() {
     const usuarioAtual = document.getElementById("admin-alt-usuario-atual").value.trim().toLowerCase();
     const usuarioNovo = document.getElementById("admin-alt-usuario-novo").value.trim();
@@ -494,7 +505,6 @@ function alterarCredenciaisPorAdmin() {
 
     let usuariosCadastrados = JSON.parse(localStorage.getItem("mequi_usuarios")) || {};
 
-    // Valida se o funcionário realmente existe
     if (!usuariosCadastrados[usuarioAtual]) {
         alert("❌ Colaborador não encontrado! Verifique a grafia exata na tabela ao lado.");
         return;
@@ -505,37 +515,32 @@ function alterarCredenciaisPorAdmin() {
     const nomeFinalExibicao = usuarioNovo ? usuarioNovo : usuarioAtual;
     const nomeFinalChave = nomeFinalExibicao.toLowerCase();
 
-    // Impede alteração caso tentem duplicar o login de outra pessoa
     if (usuarioNovo && nomeFinalChave !== usuarioAtual && (bancoDadosUsuariosFixos[nomeFinalChave] || usuariosCadastrados[nomeFinalChave])) {
         alert("❌ Erro: Este novo nome de usuário já está sendo utilizado por outro colaborador!");
         return;
     }
 
-    // LÓGICA REACIONAL: Se o login mudou, transfere os dados e atualiza o histórico passado!
     if (usuarioNovo && nomeFinalChave !== usuarioAtual) {
-        delete usuariosCadastrados[usuarioAtual]; // Remove a chave antiga
+        delete usuariosCadastrados[usuarioAtual];
         
         let historicoGeral = JSON.parse(localStorage.getItem("mequi_historico")) || [];
         historicoGeral.forEach(reg => {
             if (reg.colaborador.toLowerCase() === usuarioAtual) {
-                reg.colaborador = nomeFinalExibicao; // Alinha os treinos antigos ao novo nome
+                reg.colaborador = nomeFinalExibicao;
             }
         });
         localStorage.setItem("mequi_historico", JSON.stringify(historicoGeral));
     }
 
-    // Salva na memória do navegador
     usuariosCadastrados[nomeFinalChave] = senhaFinal;
     localStorage.setItem("mequi_usuarios", JSON.stringify(usuariosCadastrados));
 
-    alert(`✅ Credenciais de "${nomeFinalExibicao}" atualizadas com sucesso pela gerência!`);
+    alert(`✅ Credenciais de "${nomeFinalExibicao}" updated com sucesso pela gerência!`);
 
-    // Limpa os inputs do formulário de redefinição
     document.getElementById("admin-alt-usuario-atual").value = "";
     document.getElementById("admin-alt-usuario-novo").value = "";
     document.getElementById("admin-alt-senha-nova").value = "";
 
-    // Recarrega instantaneamente as tabelas na tela do Admin
     carregarDashboardAdmin();
 }
 

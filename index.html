@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Treinamento Operacional</title>
+    <title>Mc Treinamento Operacional</title>
     <style>
         /* TAMANHO E IMAGEM DE FUNDO DA TELA */
         body { 
@@ -42,9 +42,28 @@
         .btn-voltar { background: none; border: none; font-size: 14px; color: #7d7d7d; cursor: pointer; font-weight: bold; margin-bottom: 20px; text-align: left; width: fit-content; display: flex; align-items: center; gap: 5px; }
         .btn-voltar:hover { color: #292929; }
 
+        /* 🏆 REVISADO: Estilização do novo ícone do troféu com fundo branco */
+        .logo-trofeu { 
+            width: 110px; 
+            height: 110px; 
+            background: white; /* Transforma o fundo em branco conforme solicitado */
+            border-radius: 22px; 
+            margin: 0 auto 25px auto; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            box-shadow: 0 8px 25px rgba(0,0,0,0.06);
+            border: 2px solid #ffbc0d; /* Contorno dourado combinando com o troféu */
+            overflow: hidden;
+        }
+        .logo-trofeu img {
+            width: 90%;
+            height: 90%;
+            object-fit: contain;
+        }
+
         /* TELA 1: APRESENTAÇÃO / LOGIN IDENTIFICADO */
         .centro-apresentacao { text-align: center; margin: auto; max-width: 400px; width: 100%; }
-        .logo-m { width: 80px; height: 80px; background: #ffbc0d; border-radius: 18px; margin: 0 auto 25px auto; display: flex; align-items: center; justify-content: center; font-size: 45px; font-weight: bold; color: #c8102e; }
         .btn-amarelo { width: 100%; padding: 18px; background: #ffbc0d; border: none; font-size: 16px; color: #292929; font-weight: bold; border-radius: 12px; cursor: pointer; box-shadow: 0 4px 12px rgba(255, 188, 13, 0.2); }
         .btn-amarelo:hover { background: #f5b100; }
         
@@ -189,9 +208,14 @@
 
 <div class="container">
 
+    <!-- TELA 1: APRESENTAÇÃO / LOGIN IDENTIFICADO -->
     <div id="tela-apresentacao" class="tela ativa">
         <div class="centro-apresentacao">
-            <div class="logo-m">M</div>
+            <!-- 🎯 MODIFICADO: Tag 'M' alterada para o container do troféu com fundo branco -->
+            <div class="logo-trofeu">
+                <img src="images/trofeu.png" alt="Troféu Copa">
+            </div>
+            
             <h1 style="font-size: 26px; margin-bottom: 10px;">Treinamento Operacional</h1>
             <p style="color: #7d7d7d; font-size: 14px; line-height: 1.5; margin-bottom: 25px;">Insira suas credenciais para acessar as tarefas da cozinha.</p>
             
@@ -203,10 +227,15 @@
         </div>
     </div>
 
+    <!-- TELA 1.5: AUTO-CADASTRO DE NOVOS COLABORADORES -->
     <div id="tela-cadastro" class="tela">
         <button class="btn-voltar" onclick="navegarPara('tela-apresentacao')">◀ Cancelar e Voltar</button>
         <div class="centro-apresentacao">
-            <div class="logo-m">M</div>
+            <!-- 🎯 MODIFICADO: Logo do troféu adicionada também na tela de cadastro para manter o padrão visual -->
+            <div class="logo-trofeu">
+                <img src="images/trofeu.png" alt="Troféu Copa">
+            </div>
+            
             <h2 class="titulo-secao" style="margin-bottom: 5px; text-align: center;">Crie seu Perfil</h2>
             <p style="color: #7d7d7d; font-size: 14px; line-height: 1.5; margin-bottom: 25px; text-align: center;">Defina seu nome e uma senha de acesso única para salvar seus registros.</p>
             
@@ -217,12 +246,13 @@
         </div>
     </div>
 
+    <!-- TELA 2: CATEGORIAS -->
     <div id="tela-categorias" class="tela">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
             <button class="btn-voltar" style="margin-bottom:0;" onclick="navegarPara('tela-apresentacao')">◀ Sair</button>
             <button class="btn-acao-lanche btn-estudar" style="max-width: 150px; padding: 8px 12px;" onclick="verMeuHistóricoPessoal()">Meu Desempenho</button>
         </div>
-        <h2 class="titulo-secao" id="boas-vindas-usuario">Escolha uma Linha de Sanduíches</h2>
+        <h2 class="titulo-secao" id="boas-vindas-usuario">Escolha uma Line de Sanduíches</h2>
         <div class="grid-categorias">
             <button class="card-categoria" onclick="carregarGridLanches('bovina')">
                 <img src="" alt="Carne Bovina">
@@ -239,12 +269,14 @@
         </div>
     </div>
 
+    <!-- TELA 3: GRID DE LANCHES -->
     <div id="tela-grid-lanches" class="tela">
         <button class="btn-voltar" onclick="navegarPara('tela-categorias')">◀ Voltar para Categorias</button>
         <h2 class="titulo-secao" id="titulo-categoria-atual">Sanduíches</h2>
         <div class="grid-lanches" id="container-grid-lanches"></div>
     </div>
 
+    <!-- TELA 4: FICHA DA RECEITA -->
     <div id="tela-receita" class="tela">
         <button class="btn-voltar" onclick="navegarPara('tela-grid-lanches')">◀ Voltar para a Lista</button>
         <div class="receita-container">
@@ -257,6 +289,7 @@
         </div>
     </div>
 
+    <!-- TELA 4.5: QUIZ ÀS CEGAS -->
     <div id="tela-quiz" class="tela">
         <button class="btn-voltar" onclick="navegarPara('tela-grid-lanches')">◀ Cancelar Treinamento</button>
         <h2 class="titulo-secao" style="margin-bottom: 5px;">Módulo de Treinamento - Etapa 1</h2>
@@ -279,6 +312,7 @@
         </div>
     </div>
 
+    <!-- TELA 5: MESA DE PREPARAÇÃO (COZINHA) -->
     <div id="tela-cozinha" class="tela">
         <button class="btn-voltar" onclick="navegarPara('tela-receita')">◀ Voltar para a Ficha</button>
         <h2 class="titulo-secao" id="cozinha-lanche-titulo">Mesa de Preparação</h2>
@@ -311,6 +345,7 @@
         </div>
     </div>
 
+    <!-- TELA 6: PAINEL DA GERENTE (EXCLUSIVO ADMIN) -->
     <div id="tela-admin" class="tela">
         <button class="btn-voltar" onclick="navegarPara('tela-apresentacao')">◀ Sair do Painel Admin</button>
         <h2 class="titulo-secao" style="margin-bottom:5px;">📊 Dashboard de Performance Geral</h2>
@@ -350,7 +385,7 @@
             </div>
 
             <div>
-                <h2 class="titulo-secao" style="margin-bottom:5px; font-size: 19px;">🛠️ Redefinir Credenciais da Equipe</h2>
+                <h2 class="titulo-secao" style="margin-bottom:5px; font-size: 19px;">🛠 Oro Redefinir Credenciais da Equipe</h2>
                 <p style="font-size:13px; color:#666; margin-top:0; margin-bottom:15px;">Atualize ou altere o login/senha de colaboradores que esqueceram:</p>
                 <div style="background: #fdfdfd; padding: 20px; border-radius: 12px; border: 1px solid #eaeaea; box-sizing: border-box;">
                     <input type="text" id="admin-alt-usuario-atual" class="input-login" style="margin-bottom: 10px; font-size: 14px; padding: 12px; text-align: left;" placeholder="Nome cadastrado atual (ex: João)">
@@ -362,6 +397,7 @@
         </div>
     </div>
 
+    <!-- TELA 7: HISTÓRICO DE DESEMPENHO INDIVIDUAL -->
     <div id="tela-historico-usuario" class="tela">
         <button class="btn-voltar" onclick="navegarPara('tela-categorias')">◀ Voltar para o Menu</button>
         <h2 class="titulo-secao" id="titulo-historico-pessoal">Meu Histórico de Treinos</h2>
@@ -382,7 +418,9 @@
         </div>
     </div>
 
-</div> <footer class="app-footer">
+</div>
+
+<footer class="app-footer">
     <span class="footer-name">ROGÉRIO ESTUMANO</span>
     <span class="footer-separator">|</span>
     <span class="footer-tech">DATA SCIENCE & TECH</span>
