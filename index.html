@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mc Treinamento Operacional</title>
+    <title>Treinamento Operacional - Padrão Méqui</title>
     <style>
         /* TAMANHO E IMAGEM DE FUNDO DA TELA */
         body { 
@@ -42,18 +42,18 @@
         .btn-voltar { background: none; border: none; font-size: 14px; color: #7d7d7d; cursor: pointer; font-weight: bold; margin-bottom: 20px; text-align: left; width: fit-content; display: flex; align-items: center; gap: 5px; }
         .btn-voltar:hover { color: #292929; }
 
-        /* 🏆 REVISADO: Estilização do novo ícone do troféu com fundo branco */
+        /* LOGO DO TROFÉU COM FUNDO ISOLADO BRANCO */
         .logo-trofeu { 
             width: 110px; 
             height: 110px; 
-            background: white; /* Transforma o fundo em branco conforme solicitado */
+            background: white; 
             border-radius: 22px; 
             margin: 0 auto 25px auto; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
             box-shadow: 0 8px 25px rgba(0,0,0,0.06);
-            border: 2px solid #ffbc0d; /* Contorno dourado combinando com o troféu */
+            border: 2px solid #ffbc0d; 
             overflow: hidden;
         }
         .logo-trofeu img {
@@ -107,7 +107,7 @@
         .card-ingrediente-quiz { display: flex; flex-direction: column; align-items: center; padding: 12px; background: #fff; border: 2px solid #eeeeee; border-radius: 12px; cursor: pointer; transition: 0.2s; text-align: center; }
         .card-ingrediente-quiz:hover { background: #fafafa; border-color: #ccc; }
         .card-ingrediente-quiz.selecionado { border-color: #ffbc0d; background: #fffdf2; box-shadow: 0 4px 10px rgba(255,188,13,0.15); }
-        .quiz-ingredientes-grid img { width: 45px; height: 45px; object-fit: contain; margin-bottom: 8px; }
+        .card-ingrediente-quiz img { width: 45px; height: 45px; object-fit: contain; margin-bottom: 8px; }
         .card-ingrediente-quiz span { font-size: 12px; color: #292929; font-weight: bold; }
 
         /* TELA 5: MESA DE PREPARAÇÃO (COZINHA) */
@@ -121,6 +121,7 @@
         .cozinha-painel-montagem { display: flex; flex-direction: column; gap: 15px; }
         .caixas-container { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
         
+        /* 📍 ORDENAÇÃO DE BAIXO PARA CIMA */
         .caixa-layout { border: 2px solid #e0e0e0; border-radius: 12px; background: white; padding: 10px; min-height: 200px; display: flex; flex-direction: column-reverse; justify-content: flex-start; gap: 6px; cursor: pointer; transition: 0.2s; position: relative; box-shadow: inset 0 2px 6px rgba(0,0,0,0.02); }
         .caixa-layout.ativa { border-color: #ffbc0d; background: #fffdf7; box-shadow: 0 0 0 3px rgba(255, 188, 13, 0.2); }
         
@@ -152,7 +153,6 @@
         .nota-alta { background: #d4edda; color: #155724; }
         .nota-baixa { background: #f8d7da; color: #721c24; }
 
-        /* Grid Organizador do Rodapé do Admin */
         .admin-grid-management { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 25px; margin-top: 15px; }
 
         /* RODAPÉ PREMIUM CÁPSULA */
@@ -211,7 +211,6 @@
     <!-- TELA 1: APRESENTAÇÃO / LOGIN IDENTIFICADO -->
     <div id="tela-apresentacao" class="tela ativa">
         <div class="centro-apresentacao">
-            <!-- 🎯 MODIFICADO: Tag 'M' alterada para o container do troféu com fundo branco -->
             <div class="logo-trofeu">
                 <img src="images/trofeu.png" alt="Troféu Copa">
             </div>
@@ -231,7 +230,6 @@
     <div id="tela-cadastro" class="tela">
         <button class="btn-voltar" onclick="navegarPara('tela-apresentacao')">◀ Cancelar e Voltar</button>
         <div class="centro-apresentacao">
-            <!-- 🎯 MODIFICADO: Logo do troféu adicionada também na tela de cadastro para manter o padrão visual -->
             <div class="logo-trofeu">
                 <img src="images/trofeu.png" alt="Troféu Copa">
             </div>
@@ -252,7 +250,7 @@
             <button class="btn-voltar" style="margin-bottom:0;" onclick="navegarPara('tela-apresentacao')">◀ Sair</button>
             <button class="btn-acao-lanche btn-estudar" style="max-width: 150px; padding: 8px 12px;" onclick="verMeuHistóricoPessoal()">Meu Desempenho</button>
         </div>
-        <h2 class="titulo-secao" id="boas-vindas-usuario">Escolha uma Line de Sanduíches</h2>
+        <h2 class="titulo-secao" id="boas-vindas-usuario">Escolha uma Linha de Sanduíches</h2>
         <div class="grid-categorias">
             <button class="card-categoria" onclick="carregarGridLanches('bovina')">
                 <img src="" alt="Carne Bovina">
@@ -260,7 +258,7 @@
             </button>
             <button class="card-categoria" onclick="carregarGridLanches('tasty')">
                 <img src="" alt="Família Tasty">
-                <span>Família Tasty</span>
+                <span>Família Tasty & Brabo</span>
             </button>
             <button class="card-categoria" onclick="carregarGridLanches('frango')">
                 <img src="" alt="Frango">
@@ -370,7 +368,7 @@
         <div class="admin-grid-management">
             <div>
                 <h2 class="titulo-secao" style="margin-bottom:5px; font-size: 19px;">🔑 Chaves de Acesso Ativas</h2>
-                <p style="font-size:13px; color:#666; margin-top:0; margin-bottom:15px;">Lista de usuários da loja e senhas atuais para consulta.</p>
+                <p style="font-size:13px; color:#666; margin-top:0; margin-bottom:15px;">Lista de usuários da loja e senhas atuais.</p>
                 <div class="tabela-wrapper" style="margin-top:0;">
                     <table>
                         <thead>
@@ -385,11 +383,11 @@
             </div>
 
             <div>
-                <h2 class="titulo-secao" style="margin-bottom:5px; font-size: 19px;">🛠 Oro Redefinir Credenciais da Equipe</h2>
-                <p style="font-size:13px; color:#666; margin-top:0; margin-bottom:15px;">Atualize ou altere o login/senha de colaboradores que esqueceram:</p>
+                <h2 class="titulo-secao" style="margin-bottom:5px; font-size: 19px;">🛠️ Redefinir Credenciais</h2>
+                <p style="font-size:13px; color:#666; margin-top:0; margin-bottom:15px;">Atualize ou altere os acessos esquecidos pela equipe:</p>
                 <div style="background: #fdfdfd; padding: 20px; border-radius: 12px; border: 1px solid #eaeaea; box-sizing: border-box;">
                     <input type="text" id="admin-alt-usuario-atual" class="input-login" style="margin-bottom: 10px; font-size: 14px; padding: 12px; text-align: left;" placeholder="Nome cadastrado atual (ex: João)">
-                    <input type="text" id="admin-alt-usuario-novo" class="input-login" style="margin-bottom: 10px; font-size: 14px; padding: 12px; text-align: left;" placeholder="Novo Nome de Login (deixe vazio se não mudar)">
+                    <input type="text" id="admin-alt-usuario-novo" class="input-login" style="margin-bottom: 10px; font-size: 14px; padding: 12px; text-align: left;" placeholder="Novo Nome de Login (opcional)">
                     <input type="text" id="admin-alt-senha-nova" class="input-login" style="margin-bottom: 15px; font-size: 14px; padding: 12px; text-align: left;" placeholder="Nova Senha Operacional">
                     <button class="btn-amarelo" style="padding: 14px; font-size: 14px; border-radius: 8px;" onclick="alterarCredenciaisPorAdmin()">Salvar Novas Credenciais</button>
                 </div>

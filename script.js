@@ -1,61 +1,127 @@
 // 🔑 CREDENCIAIS FIXAS MASTER DO SISTEMA
 const bancoDadosUsuariosFixos = {
-    "admin": "4321",       // Senha Master da Gerente
-    "rogério": "eu2026"  // Sua senha de Desenvolvedor
+    "admin": "1234",       
+    "rogerio": "7654"  
 };
 
-// 1. BANCO DE DADOS MESTRE DE TODOS OS INGREDIENTES DA COZINHA (Atualizado com novos itens!)
+// 1. DESPENSA MESTRE DE INGREDIENTES DA COZINHA (Contém os novos insumos mapeados)
 const bancoDadosIngredientes = {
     "Pão com Gergelim": { img: "images/ingredientes/pao_gergelim.png" },
-    "Pão Regular": { img: "images/ingredientes/pao_regular.png" }, // Novo!
-    "Pão Brioche Batata": { img: "images/ingredientes/pao_brioche.png" },
+    "Pão Regular": { img: "images/ingredientes/pao_regular.png" },
+    "Pão Escuro com Gergelim": { img: "images/ingredientes/pao_escuro.png" },
+    "Pão Tasty": { img: "images/ingredientes/pao_tasty.png" },
+    "Pão tipo Brioche": { img: "images/ingredientes/pao_brioche.png" },
+    "Pão tipo Brioche com Batata": { img: "images/ingredientes/pao_brioche_batata.png" },
+    "Pão de Big Mac": { img: "images/ingredientes/pao_bigmac.png" },
     "Molho Especial": { img: "images/ingredientes/molho_especial.png" },
+    "Molho Tasty": { img: "images/ingredientes/molho_tasty.png" },
+    "Molho do CBO": { img: "images/ingredientes/molho_cbo.png" },
     "Molho Ranch": { img: "images/ingredientes/molho_ranch.png" },
-    "Mostarda": { img: "images/ingredientes/mostarda.png" }, // Novo!
-    "Ketchup": { img: "images/ingredientes/ketchup.png" }, // Novo!
-    "Fatia Queijo Cheddar": { img: "images/ingredientes/queijo_cheddar.png" },
-    "Carne 100% Bovina": { img: "images/ingredientes/carne_bovina.png" },
-    "Carne 10:1 100% Bovina": { img: "images/ingredientes/carne_101.png" }, // Novo!
-    "Frango Crispy": { img: "images/ingredientes/frango_crispy.png" },
+    "Molho lácteo com queijo tipo cheddar": { img: "images/ingredientes/molho_cheddar.png" },
+    "Mostarda": { img: "images/ingredientes/mostarda.png" },
+    "Ketchup": { img: "images/ingredientes/ketchup.png" },
+    "Maionese": { img: "images/ingredientes/maionese.png" },
+    "Mequinese": { img: "images/ingredientes/mequinese.png" },
+    "Geleia Agridoce Defumada": { img: "images/ingredientes/geleia_defumada.png" },
     "Alface": { img: "images/ingredientes/alface.png" },
     "Tomate": { img: "images/ingredientes/tomate.png" },
     "Bacon": { img: "images/ingredientes/bacon.png" },
+    "Bacon Triturado": { img: "images/ingredientes/bacon_triturado.png" },
     "Picles": { img: "images/ingredientes/picles.png" },
-    "Cebola Reidratada": { img: "images/ingredientes/cebola_reidratada.png" } // Novo!
+    "Cebola Reidratada": { img: "images/ingredientes/cebola_reidratada.png" },
+    "Cebola Fresca": { img: "images/ingredientes/cebola_fresca.png" },
+    "Cebola Shoyu": { img: "images/ingredientes/cebola_shoyu.png" },
+    "Cebola Crispy": { img: "images/ingredientes/cebola_crispy.png" },
+    "Fatia Queijo Cheddar": { img: "images/ingredientes/queijo_cheddar.png" },
+    "Queijo sabor Emental": { img: "images/ingredientes/queijo_emental.png" },
+    "Carne Bovina [10:1]": { img: "images/ingredientes/carne_bovina101.png" },
+    "Carne Bovina [4:1]": { img: "images/ingredientes/carne_bovina41.png" },
+    "Carne Chicken Junior": { img: "images/ingredientes/frango_jr.png" },
+    "Carne Chicken": { img: "images/ingredientes/frango_mc.png" },
+    "Frango Crispy": { img: "images/ingredientes/frango_crispy.png" }
 };
 
-// 2. BANCO DE DADOS DO MENU E RECEITAS (Com o Cheeseburger incluso!)
+// 2. BANCO DE DADOS ATUALIZADO COM O CARDÁPIO COMPLETO DO MEQUI
 const bancoDadosMenu = {
     bovina: {
         titulo: "Sanduíches de Carne Bovina",
         imgCategoria: "images/categorias/cat_bovina.png",
         itens: {
-            "big-mac": {
-                nome: "Big Mac",
-                img: "images/bovina/big_mac.png",
-                descricao: "Dois hambúrgueres (100% carne bovina), alface americana, queijo cheddar, maionese Big Mac, cebola, picles e pão com gergelim.",
-                receitaTampa: ["Pão com Gergelim", "Molho Especial", "Alface", "Picles"],
-                receitaBase: ["Fatia Queijo Cheddar", "Carne 100% Bovina"]
+            "hamburger": {
+                nome: "Hamburger",
+                img: "images/bovina/hamburger.png",
+                descricao: "Um hambúrguer 100% carne bovina, cebola reidratada, picles, ketchup, mostarda e pão regular sem gergelim.",
+                receitaTampa: ["Pão Regular", "Mostarda", "Ketchup", "Picles"],
+                receitaBase: ["Carne Bovina [10:1]", "Cebola Reidratada"]
             },
             "cheeseburguer": {
                 nome: "Cheeseburger",
                 img: "images/bovina/cheeseburguer.png",
-                descricao: "Um hamburguer (100% carne bovina), queijo cheddar, cebola, picles, ketchup, mostarda e pão sem gergelim (pão regular).",
-                receitaTampa: ["Pão Regular", "Mostarda", "Ketchup", "Picles", "Queijo Cheddar"],
-                receitaBase: ["Carne 10:1 100% Bovina", "Cebola Reidratada"]
+                descricao: "Um hambúrguer 100% carne bovina, queijo cheddar fatiado, cebola reidratada, picles, ketchup, mostarda e pão regular.",
+                receitaTampa: ["Pão Regular", "Mostarda", "Ketchup", "Picles", "Fatia Queijo Cheddar"],
+                receitaBase: ["Carne Bovina [10:1]", "Cebola Reidratada"]
+            },
+            "duplo-burger-bacon": {
+                nome: "Duplo Burger Bacon",
+                img: "images/bovina/duplo_bacon.png",
+                descricao: "Dois hambúrgueres 100% carne bovina, queijo cheddar fatiado, fatias de bacon crocante, picles, cebola reidratada, ketchup, mostarda e pão com gergelim.",
+                receitaTampa: ["Pão com Gergelim", "Mostarda", "Ketchup", "Picles", "Bacon"],
+                receitaBase: ["Carne Bovina [10:1]", "Fatia Queijo Cheddar", "Cebola Reidratada"]
+            },
+            "quarterao": {
+                nome: "Quarterão com Queijo",
+                img: "images/bovina/quarterao.png",
+                descricao: "Um hambúrguer 100% carne bovina feito com carne 4:1 (mais grossa), duas fatias de queijo cheddar, picles, cebola fresca, ketchup e mostarda no pão com gergelim.",
+                receitaTampa: ["Pão com Gergelim", "Mostarda", "Ketchup", "Picles", "Cebola Fresca"],
+                receitaBase: ["Carne Bovina [4:1]", "Fatia Queijo Cheddar"]
+            },
+            "mcnifico-bacon": {
+                nome: "McNífico Bacon",
+                img: "images/bovina/mcnifico.png",
+                descricao: "Hambúrguer de carne bovina 4:1, queijo cheddar fatiado, bacon, tomate, alface americana, cebola fresca, ketchup, mostarda e maionese no pão com gergelim.",
+                receitaTampa: ["Pão com Gergelim", "Mostarda", "Ketchup", "Maionese", "Alface Americana", "Tomate", "Bacon"],
+                receitaBase: ["Carne Bovina [4:1]", "Fatia Queijo Cheddar", "Cebola Fresca"]
+            },
+            "cheddar-mcmelt": {
+                nome: "Cheddar McMelt",
+                img: "images/bovina/cheddar_mcmelt.png",
+                descricao: "Um hambúrguer bovino 4:1, molho lácteo cremoso com queijo tipo cheddar, cebola caramelizada ao molho shoyu no pão escuro com gergelim.",
+                receitaTampa: ["Pão Escuro com Gergelim", "Cebola Shoyu"],
+                receitaBase: ["Carne Bovina [4:1]", "Molho lácteo com queijo tipo cheddar"]
+            },
+            "big-mac": {
+                nome: "Big Mac",
+                img: "images/bovina/big_mac.png",
+                descricao: "Dois hambúrgueres 100% carne bovina, alface americana, queijo cheddar, o inconfundível molho especial, cebola reidratada, picles e pão de Big Mac.",
+                receitaTampa: ["Pão de Big Mac", "Molho Especial", "Alface", "Picles"],
+                receitaBase: ["Carne Bovina [10:1]", "Fatia Queijo Cheddar", "Cebola Reidratada"]
             }
         }
     },
     tasty: {
-        titulo: "Família Tasty",
+        titulo: "Família Tasty & Brabo",
         imgCategoria: "images/categorias/cat_tasty.png",
         itens: {
-            "tasty-turbo-3": {
-                nome: "Tasty Turbo Bacon 3 carnes",
-                img: "images/tasty/tasty_3.png",
-                descricao: "Três carnes bovinas, queijo e a inconfundível maionese Tasty com bacon cascudo.",
-                receitaTampa: ["Pão com Gergelim", "Bacon"],
-                receitaBase: ["Fatia Queijo Cheddar", "Carne 100% Bovina"]
+            "tasty-turbo-1": {
+                nome: "Tasty Turbo 1 Carne",
+                img: "images/tasty/tasty_1.png",
+                descricao: "Um hambúrguer de carne bovina 4:1, o icônico molho Tasty, três fatias de queijo sabor emental, tomate fresco, alface americana e cebola fresca no pão Tasty.",
+                receitaTampa: ["Pão Tasty", "Molho Tasty", "Alface", "Tomate", "Cebola Fresca"],
+                receitaBase: ["Carne Bovina [4:1]", "Queijo sabor Emental"]
+            },
+            "brabo-brabissimo-carne": {
+                nome: "Brabo Brabíssimo Carne",
+                img: "images/tasty/brabo_carne.png",
+                descricao: "Dois hambúrgueres bovinos 4:1, a exclusiva Mequinese sabor carne defumada, molho do CBO, alface, fatias de bacon, queijo cheddar e cebola crispy no pão tipo brioche.",
+                receitaTampa: ["Pão tipo Brioche", "Molho do CBO", "Mequinese", "Alface", "Bacon", "Cebola Crispy"],
+                receitaBase: ["Carne Bovina [4:1]", "Fatia Queijo Cheddar"]
+            },
+            "brabo-smokehouse": {
+                nome: "Brabo SmokeHouse",
+                img: "images/tasty/brabo_smoke.png",
+                descricao: "Dois hambúrgueres bovinos 4:1, Mequinese, cebola crispy, bacon em fatias, queijo cheddar, bacon triturado e a nova geleia agridoce defumada no pão brioche.",
+                receitaTampa: ["Pão tipo Brioche", "Geleia Agridoce Defumada", "Mequinese", "Bacon Triturado", "Bacon", "Cebola Crispy"],
+                receitaBase: ["Carne Bovina [4:1]", "Fatia Queijo Cheddar"]
             }
         }
     },
@@ -63,12 +129,61 @@ const bancoDadosMenu = {
         titulo: "Sanduíches de Frango",
         imgCategoria: "images/categorias/cat_frango.png",
         itens: {
-            "mccrispy-ranch": {
+            "chicken-jr": {
+                nome: "Chicken Jr",
+                img: "images/frango/chicken_jr.png",
+                descricao: "Frango empanado crocante, maionese tradicional e alface fresquinha no pão regular.",
+                receitaTampa: ["Pão Regular", "Maionese", "Alface"],
+                receitaBase: ["Carne Chicken Junior"]
+            },
+            "mcchicken": {
+                nome: "McChicken",
+                img: "images/frango/mcchicken.png",
+                descricao: "Frango empanado dourado, maionese tradicional e alface americana crocante no pão com gergelim.",
+                receitaTampa: ["Pão com Gergelim", "Maionese", "Alface"],
+                receitaBase: ["Carne Chicken"]
+            },
+            "mcchicken-bacon": {
+                nome: "McChicken Bacon",
+                img: "images/frango/mcchicken_bacon.png",
+                descricao: "Frango empanado, fatias de bacon crocante, maionese e alface americana no pão com gergelim.",
+                receitaTampa: ["Pão com Gergelim", "Maionese", "Alface", "Bacon"],
+                receitaBase: ["Carne Chicken"]
+            },
+            "mcchicken-duplo": {
+                nome: "McChicken Duplo",
+                img: "images/frango/mcchicken_duplo.png",
+                descricao: "Dois empanados de frango estruturados, maionese e alface americana no pão com gergelim.",
+                receitaTampa: ["Pão com Gergelim", "Maionese", "Alface"],
+                receitaBase: ["Carne Chicken"]
+            },
+            "mccrispy-deluxe": {
+                nome: "McCrispy Chicken Deluxe",
+                img: "images/frango/mccrispy_deluxe.png",
+                descricao: "Peito de frango temperado e empanado, maionese, alface e tomate fatiado no pão tipo brioche com batata.",
+                receitaTampa: ["Pão tipo Brioche com Batata", "Maionese", "Alface", "Tomate"],
+                receitaBase: ["Frango Crispy"]
+            },
+            "mccrispy-bacon-ranch": {
                 nome: "McCrispy Chicken Bacon Ranch",
                 img: "images/frango/mccrispy_ranch.png",
-                descricao: "Composto por pão tipo brioche com batata, o novo molho Ranch, bacon em fatias, alface americana, tomate e carne 100% de peito de frango empanada.",
-                receitaTampa: ["Pão Brioche Batata", "Molho Ranch", "Bacon", "Alface", "Tomate"],
+                descricao: "Pão brioche com batata, molho Ranch cremoso, bacon em fatias, alface americana, tomate fresco e peito de frango empanado.",
+                receitaTampa: ["Pão tipo Brioche com Batata", "Molho Ranch", "Alface", "Tomate", "Bacon"],
                 receitaBase: ["Frango Crispy"]
+            },
+            "mccrispy-legend": {
+                nome: "McCrispy Chicken Legend",
+                img: "images/frango/mccrispy_legend.png",
+                descricao: "Frango empanado premium, molho emulsionado do CBO, cebola crispy, fatias de bacon, alface americana e queijo sabor cheddar no pão brioche com batata.",
+                receitaTampa: ["Pão tipo Brioche com Batata", "Molho do CBO", "Alface", "Bacon", "Cebola Crispy"],
+                receitaBase: ["Frango Crispy", "Fatia Queijo Cheddar"]
+            },
+            "brabo-brabissimo-frango": {
+                nome: "Brabo Brabíssimo Frango",
+                img: "images/frango/brabo_frango.png",
+                descricao: "Dois empanados de frango, a exclusiva Mequinese defumada, molho do CBO, alface, fatias de bacon, queijo processado sabor cheddar e cebola crispy no pão brioche.",
+                receitaTampa: ["Pão tipo Brioche", "Molho do CBO", "Mequinese", "Alface", "Bacon", "Cebola Crispy"],
+                receitaBase: ["Carne Chicken", "Fatia Queijo Cheddar"]
             }
         }
     }
@@ -191,7 +306,8 @@ function carregarFichaReceita(keyLanche) {
     const listaIngredientesContainer = document.getElementById("receita-lista-ingredientes");
     listaIngredientesContainer.innerHTML = "";
 
-    const todosIngredientes = [...lanche.receitaTampa, ...lanche.receitaBase];
+    const receitaFundoFinal = lanche.receitaBase || lanche.receitaFundo;
+    const todosIngredientes = [...lanche.receitaTampa, ...receitaFundoFinal];
     todosIngredientes.forEach(nomeIngrediente => {
         const dadosDoItem = bancoDadosIngredientes[nomeIngrediente];
         const linha = document.createElement("div");
@@ -245,7 +361,8 @@ function selecionarIngredienteQuiz(nome, elementoHTML) {
 
 function verificarRespostasQuiz() {
     const lanche = bancoDadosMenu[categoriaAtiva].itens[lancheAtivoId];
-    const receitaOficialUnificada = [...lanche.receitaTampa, ...lanche.receitaBase];
+    const receitaFundoFinal = lanche.receitaBase || lanche.receitaFundo;
+    const receitaOficialUnificada = [...lanche.receitaTampa, ...receitaFundoFinal];
     
     let acertos = 0;
     let erros = 0;
@@ -307,7 +424,8 @@ function irParaCozinha() {
     
     limparMesaCozinha();
     
-    const ingredientesDoLanche = [...lanche.receitaTampa, ...lanche.receitaBase];
+    const receitaFundoFinal = lanche.receitaBase || lanche.receitaFundo;
+    const ingredientesDoLanche = [...lanche.receitaTampa, ...receitaFundoFinal];
     const listaEmbaralhada = ingredientesDoLanche.sort(() => Math.random() - 0.5);
 
     const containerLista = document.getElementById("cozinha-lista-ingredientes");
@@ -319,7 +437,7 @@ function irParaCozinha() {
         button.onclick = () => adicionarIngredienteNaCaixa(ingrediente);
 
         const img = document.createElement("img");
-        img.src = bancoDadosIngredientes[ingrediente].img;
+        img.src = bancoDadosIngredientes[ingrediente] ? bancoDadosIngredientes[ingrediente].img : '';
         img.onerror = () => { img.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24'><rect width='24' height='24' fill='%23f2f2f2'/></svg>"; };
 
         const span = document.createElement("span");
@@ -334,7 +452,7 @@ function irParaCozinha() {
 }
 
 function mudarCaixaAtiva(caixa) {
-    caixaAtiva = box = caixa;
+    caixaAtiva = caixa;
     document.getElementById("caixa-tampa").classList.toggle("ativa", caixa === "tampa");
     document.getElementById("caixa-fundo").classList.toggle("ativa", caixa === "fundo");
 }
@@ -362,7 +480,7 @@ function criarTagItemCozinha(nomeItem) {
     const div = document.createElement("div");
     div.className = "item-na-caixa";
     const img = document.createElement("img");
-    img.src = bancoDadosIngredientes[nomeItem].img;
+    img.src = bancoDadosIngredientes[nomeItem] ? bancoDadosIngredientes[nomeItem].img : '';
     img.onerror = () => { 
         img.src = "data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='40' viewBox='0 0 24 24'><circle cx='12' cy='12' r='6' fill='%23ffbc0d'/></svg>"; 
     };
@@ -535,7 +653,7 @@ function alterarCredenciaisPorAdmin() {
     usuariosCadastrados[nomeFinalChave] = senhaFinal;
     localStorage.setItem("mequi_usuarios", JSON.stringify(usuariosCadastrados));
 
-    alert(`✅ Credenciais de "${nomeFinalExibicao}" updated com sucesso pela gerência!`);
+    alert(`✅ Credenciais de "${nomeFinalExibicao}" atualizadas com sucesso pela gerência!`);
 
     document.getElementById("admin-alt-usuario-atual").value = "";
     document.getElementById("admin-alt-usuario-novo").value = "";
